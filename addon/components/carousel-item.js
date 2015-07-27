@@ -8,12 +8,11 @@ export default Ember.Component.extend({
   carousel: Ember.inject.service(),
   classNameBindings: [':carousel-item', 'isActive:active'],
 
-  'is-default': false,
   index: 0,
 
-  isActive: computed('carousel.carouselItems.[]', 'is-default', {
+  isActive: computed('carousel.carouselItems.[]', {
     get() {
-      return this.get('is-default') || (this === this.get('carousel.carouselItems.firstObject'));
+      return this === this.get('carousel.carouselItems.firstObject');
     },
 
     set(key, value) {
@@ -22,9 +21,8 @@ export default Ember.Component.extend({
   }),
 
   registerOnCarosuelBody: on('init', function() {
-    debugger;
     const carouselSerivce = this.get('carousel');
     carouselSerivce.registerCarouselItem(this);
-    this.set('index', carouselSerivce.get('carouselItems.length') - 1);
+    this.set('index', carouselSerivce.get('totalCarouselItems') - 1);
   })
 });

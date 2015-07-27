@@ -16,20 +16,13 @@ export default Ember.Service.extend({
     this.get('carouselItems').pushObject(carouselItem);
   },
 
-  slideLeft() {
+  slide(newActiveIndex, direction) {
     var carouselItems = this.get('carouselItems');
     var activeCarouselItem = this.get('activeCarouselItem');
-    var activeIndex = activeCarouselItem.get('index');
-    let newActiveIndex = activeIndex - 1;
-
-    if(activeIndex === 0) {
-      newActiveIndex = carouselItems.length - 1;
-    }
-
     var newActiveCarouselItem = carouselItems[newActiveIndex];
 
-    activeCarouselItem.$()[0].classList.add('left');
-    newActiveCarouselItem.$()[0].classList.add('left');
+    activeCarouselItem.$()[0].classList.add(direction);
+    newActiveCarouselItem.$()[0].classList.add(direction);
 
     run.later(function() {
       activeCarouselItem.set('isActive', false);
@@ -37,24 +30,25 @@ export default Ember.Service.extend({
     }, 500);
   },
 
+  slideLeft() {
+    var activeIndex = this.get('activeCarouselItem.index');
+    let newActiveIndex = activeIndex - 1;
+
+    if(activeIndex === 0) {
+      newActiveIndex = this.get('totalCarouselItems') - 1;
+    }
+
+    this.slide(newActiveIndex, 'left');
+  },
+
   slideRight() {
-    var carouselItems = this.get('carouselItems');
-    var activeCarouselItem = this.get('activeCarouselItem');
-    var activeIndex = activeCarouselItem.get('index');
+    var activeIndex = this.get('activeCarouselItem.index');
     let newActiveIndex = activeIndex + 1;
 
     if(activeIndex === (this.get('totalCarouselItems') - 1)) {
       newActiveIndex = 0;
     }
 
-    var newActiveCarouselItem = carouselItems[newActiveIndex];
-
-    activeCarouselItem.$()[0].classList.add('right');
-    newActiveCarouselItem.$()[0].classList.add('right');
-
-    run.later(function() {
-      activeCarouselItem.set('isActive', false);
-      newActiveCarouselItem.set('isActive', true);
-    }, 500);
+    this.slide(newActiveIndex, 'right');
   }
 });
