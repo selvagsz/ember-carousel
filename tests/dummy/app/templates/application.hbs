@@ -1,25 +1,21 @@
-<h2 id="title">Welcome to Ember.js</h2>
+{{#carousel-container classNames="demo-carousel"}}
+  {{#carousel-body}}
+    {{#carousel-item}}
+      <img class="img-responsive" src="https://ununsplash.imgix.net/photo-1434394673726-e8232a5903b4?dpr=2&fit=crop&fm=jpg&h=700&q=75&w=1050" />
+    {{/carousel-item}}
+    {{#carousel-item}}
+      <img class="img-responsive" src="https://ununsplash.imgix.net/photo-1433833103303-111110aae192?dpr=2&fit=crop&fm=jpg&h=700&q=75&w=1050" />
+    {{/carousel-item}}
+    {{#carousel-item}}
+      <img class="img-responsive" src="https://ununsplash.imgix.net/photo-1433785124354-92116416b870?dpr=2&fit=crop&fm=jpg&h=700&q=75&w=1050" />
+    {{/carousel-item}}
+  {{/carousel-body}}
 
-  {{#carousel-container}}
-    {{#carousel-body}}
-      {{#carousel-item}}
-        Emberjs
-      {{/carousel-item}}
-      {{#carousel-item}}
-        Reactjs
-      {{/carousel-item}}
-      {{#carousel-item}}
-        Angularjs
-      {{/carousel-item}}
-    {{/carousel-body}}
+  {{#carousel-arrow direction="left" tagName="button"}}
+    Slide Left
+  {{/carousel-arrow}}
 
-    {{#carousel-arrow direction="left" tagName="button"}}
-      Slide Left
-    {{/carousel-arrow}}
-
-    {{#carousel-arrow direction="right" tagName="button"}}
-      Slide Right
-    {{/carousel-arrow}}
-  {{/carousel-container}}
-
-{{outlet}}
+  {{#carousel-arrow direction="right" tagName="button"}}
+    Slide Right
+  {{/carousel-arrow}}
+{{/carousel-container}}
