@@ -1,0 +1,11 @@
+.carousel-item {
+  display: none;
+}
+
+.carousel-item.active {
+  display: block;
+}
+
+.carousel-indicator {
+  display: inline-block;
+}
