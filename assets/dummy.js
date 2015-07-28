@@ -130,23 +130,13 @@ define('dummy/ember-carousel/tests/modules/ember-carousel/components/carousel-it
   });
 
 });
-define('dummy/ember-carousel/tests/modules/ember-carousel/computed/findby.jshint', function () {
-
-  'use strict';
-
-  module('JSHint - modules/ember-carousel/computed');
-  test('modules/ember-carousel/computed/findby.js should pass jshint', function () {
-    ok(false, 'modules/ember-carousel/computed/findby.js should pass jshint.\nmodules/ember-carousel/computed/findby.js: line 8, col 5, Missing semicolon.\n\n1 error');
-  });
-
-});
 define('dummy/ember-carousel/tests/modules/ember-carousel/services/carousel.jshint', function () {
 
   'use strict';
 
   module('JSHint - modules/ember-carousel/services');
   test('modules/ember-carousel/services/carousel.js should pass jshint', function () {
-    ok(false, 'modules/ember-carousel/services/carousel.js should pass jshint.\nmodules/ember-carousel/services/carousel.js: line 30, col 11, Missing semicolon.\n\n1 error');
+    ok(true, 'modules/ember-carousel/services/carousel.js should pass jshint.');
   });
 
 });
@@ -244,12 +234,12 @@ define('dummy/templates/application', ['exports'], function (exports) {
               "loc": {
                 "source": null,
                 "start": {
-                  "line": 3,
-                  "column": 4
+                  "line": 6,
+                  "column": 6
                 },
                 "end": {
-                  "line": 5,
-                  "column": 4
+                  "line": 8,
+                  "column": 6
                 }
               },
               "moduleName": "dummy/templates/application.hbs"
@@ -259,11 +249,11 @@ define('dummy/templates/application', ['exports'], function (exports) {
             hasRendered: false,
             buildFragment: function buildFragment(dom) {
               var el0 = dom.createDocumentFragment();
-              var el1 = dom.createTextNode("      ");
+              var el1 = dom.createTextNode("        ");
               dom.appendChild(el0, el1);
               var el1 = dom.createElement("img");
               dom.setAttribute(el1,"class","img-responsive");
-              dom.setAttribute(el1,"src","https://ununsplash.imgix.net/photo-1434394673726-e8232a5903b4?dpr=2&fit=crop&fm=jpg&h=700&q=75&w=1050");
+              dom.setAttribute(el1,"src","https://unsplash.imgix.net/photo-1428452932365-4e7e1c4b0987?dpr=2&fit=crop&fm=jpg&h=700&q=75&w=1050");
               dom.appendChild(el0, el1);
               var el1 = dom.createTextNode("\n");
               dom.appendChild(el0, el1);
@@ -284,12 +274,12 @@ define('dummy/templates/application', ['exports'], function (exports) {
               "loc": {
                 "source": null,
                 "start": {
-                  "line": 6,
-                  "column": 4
+                  "line": 9,
+                  "column": 6
                 },
                 "end": {
-                  "line": 8,
-                  "column": 4
+                  "line": 11,
+                  "column": 6
                 }
               },
               "moduleName": "dummy/templates/application.hbs"
@@ -299,11 +289,11 @@ define('dummy/templates/application', ['exports'], function (exports) {
             hasRendered: false,
             buildFragment: function buildFragment(dom) {
               var el0 = dom.createDocumentFragment();
-              var el1 = dom.createTextNode("      ");
+              var el1 = dom.createTextNode("        ");
               dom.appendChild(el0, el1);
               var el1 = dom.createElement("img");
               dom.setAttribute(el1,"class","img-responsive");
-              dom.setAttribute(el1,"src","https://ununsplash.imgix.net/photo-1433833103303-111110aae192?dpr=2&fit=crop&fm=jpg&h=700&q=75&w=1050");
+              dom.setAttribute(el1,"src","https://ununsplash.imgix.net/photo-1429547584745-d8bec594c82e?q=75&fm=jpg&w=1080&fit=max&s=1870a82969024ba6816b271a49ca5876");
               dom.appendChild(el0, el1);
               var el1 = dom.createTextNode("\n");
               dom.appendChild(el0, el1);
@@ -324,12 +314,12 @@ define('dummy/templates/application', ['exports'], function (exports) {
               "loc": {
                 "source": null,
                 "start": {
-                  "line": 9,
-                  "column": 4
+                  "line": 12,
+                  "column": 6
                 },
                 "end": {
-                  "line": 11,
-                  "column": 4
+                  "line": 14,
+                  "column": 6
                 }
               },
               "moduleName": "dummy/templates/application.hbs"
@@ -339,7 +329,7 @@ define('dummy/templates/application', ['exports'], function (exports) {
             hasRendered: false,
             buildFragment: function buildFragment(dom) {
               var el0 = dom.createDocumentFragment();
-              var el1 = dom.createTextNode("      ");
+              var el1 = dom.createTextNode("        ");
               dom.appendChild(el0, el1);
               var el1 = dom.createElement("img");
               dom.setAttribute(el1,"class","img-responsive");
@@ -363,12 +353,12 @@ define('dummy/templates/application', ['exports'], function (exports) {
             "loc": {
               "source": null,
               "start": {
-                "line": 2,
-                "column": 2
+                "line": 5,
+                "column": 4
               },
               "end": {
-                "line": 12,
-                "column": 2
+                "line": 15,
+                "column": 4
               }
             },
             "moduleName": "dummy/templates/application.hbs"
@@ -396,80 +386,12 @@ define('dummy/templates/application', ['exports'], function (exports) {
             return morphs;
           },
           statements: [
-            ["block","carousel-item",[],[],0,null,["loc",[null,[3,4],[5,22]]]],
-            ["block","carousel-item",[],[],1,null,["loc",[null,[6,4],[8,22]]]],
-            ["block","carousel-item",[],[],2,null,["loc",[null,[9,4],[11,22]]]]
+            ["block","carousel-item",[],[],0,null,["loc",[null,[6,6],[8,24]]]],
+            ["block","carousel-item",[],[],1,null,["loc",[null,[9,6],[11,24]]]],
+            ["block","carousel-item",[],[],2,null,["loc",[null,[12,6],[14,24]]]]
           ],
           locals: [],
           templates: [child0, child1, child2]
-        };
-      }());
-      var child1 = (function() {
-        return {
-          meta: {
-            "revision": "Ember@1.13.3",
-            "loc": {
-              "source": null,
-              "start": {
-                "line": 14,
-                "column": 2
-              },
-              "end": {
-                "line": 16,
-                "column": 2
-              }
-            },
-            "moduleName": "dummy/templates/application.hbs"
-          },
-          arity: 0,
-          cachedFragment: null,
-          hasRendered: false,
-          buildFragment: function buildFragment(dom) {
-            var el0 = dom.createDocumentFragment();
-            var el1 = dom.createTextNode("    Slide Left\n");
-            dom.appendChild(el0, el1);
-            return el0;
-          },
-          buildRenderNodes: function buildRenderNodes() { return []; },
-          statements: [
-
-          ],
-          locals: [],
-          templates: []
-        };
-      }());
-      var child2 = (function() {
-        return {
-          meta: {
-            "revision": "Ember@1.13.3",
-            "loc": {
-              "source": null,
-              "start": {
-                "line": 18,
-                "column": 2
-              },
-              "end": {
-                "line": 20,
-                "column": 2
-              }
-            },
-            "moduleName": "dummy/templates/application.hbs"
-          },
-          arity: 0,
-          cachedFragment: null,
-          hasRendered: false,
-          buildFragment: function buildFragment(dom) {
-            var el0 = dom.createDocumentFragment();
-            var el1 = dom.createTextNode("    Slide Right\n");
-            dom.appendChild(el0, el1);
-            return el0;
-          },
-          buildRenderNodes: function buildRenderNodes() { return []; },
-          statements: [
-
-          ],
-          locals: [],
-          templates: []
         };
       }());
       return {
@@ -478,12 +400,12 @@ define('dummy/templates/application', ['exports'], function (exports) {
           "loc": {
             "source": null,
             "start": {
-              "line": 1,
-              "column": 0
+              "line": 4,
+              "column": 2
             },
             "end": {
-              "line": 21,
-              "column": 0
+              "line": 19,
+              "column": 2
             }
           },
           "moduleName": "dummy/templates/application.hbs"
@@ -495,13 +417,15 @@ define('dummy/templates/application', ['exports'], function (exports) {
           var el0 = dom.createDocumentFragment();
           var el1 = dom.createComment("");
           dom.appendChild(el0, el1);
-          var el1 = dom.createTextNode("\n");
+          var el1 = dom.createTextNode("\n    ");
+          dom.appendChild(el0, el1);
+          var el1 = dom.createComment("");
+          dom.appendChild(el0, el1);
+          var el1 = dom.createTextNode("\n    ");
           dom.appendChild(el0, el1);
           var el1 = dom.createComment("");
           dom.appendChild(el0, el1);
           var el1 = dom.createTextNode("\n");
-          dom.appendChild(el0, el1);
-          var el1 = dom.createComment("");
           dom.appendChild(el0, el1);
           return el0;
         },
@@ -511,16 +435,15 @@ define('dummy/templates/application', ['exports'], function (exports) {
           morphs[1] = dom.createMorphAt(fragment,2,2,contextualElement);
           morphs[2] = dom.createMorphAt(fragment,4,4,contextualElement);
           dom.insertBoundary(fragment, 0);
-          dom.insertBoundary(fragment, null);
           return morphs;
         },
         statements: [
-          ["block","carousel-body",[],[],0,null,["loc",[null,[2,2],[12,20]]]],
-          ["block","carousel-arrow",[],["direction","left","tagName","button"],1,null,["loc",[null,[14,2],[16,21]]]],
-          ["block","carousel-arrow",[],["direction","right","tagName","button"],2,null,["loc",[null,[18,2],[20,21]]]]
+          ["block","carousel-body",[],[],0,null,["loc",[null,[5,4],[15,22]]]],
+          ["inline","carousel-arrow",[],["direction","left","class","line-arrow left"],["loc",[null,[17,4],[17,63]]]],
+          ["inline","carousel-arrow",[],["direction","right","class","line-arrow right"],["loc",[null,[18,4],[18,65]]]]
         ],
         locals: [],
-        templates: [child0, child1, child2]
+        templates: [child0]
       };
     }());
     return {
@@ -533,7 +456,7 @@ define('dummy/templates/application', ['exports'], function (exports) {
             "column": 0
           },
           "end": {
-            "line": 22,
+            "line": 27,
             "column": 0
           }
         },
@@ -544,19 +467,59 @@ define('dummy/templates/application', ['exports'], function (exports) {
       hasRendered: false,
       buildFragment: function buildFragment(dom) {
         var el0 = dom.createDocumentFragment();
-        var el1 = dom.createComment("");
+        var el1 = dom.createElement("div");
+        dom.setAttribute(el1,"class","demo-carousel");
+        var el2 = dom.createTextNode("\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("h2");
+        dom.setAttribute(el2,"class","text-center");
+        var el3 = dom.createTextNode(" Ember Carousel Addon ");
+        dom.appendChild(el2, el3);
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n\n");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createComment("");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n  ");
+        dom.appendChild(el1, el2);
+        var el2 = dom.createElement("div");
+        dom.setAttribute(el2,"class","image-credits");
+        var el3 = dom.createTextNode("\n    ");
+        dom.appendChild(el2, el3);
+        var el3 = dom.createElement("small");
+        var el4 = dom.createTextNode("\n      ");
+        dom.appendChild(el3, el4);
+        var el4 = dom.createElement("i");
+        var el5 = dom.createTextNode("Image Credits ");
+        dom.appendChild(el4, el5);
+        var el5 = dom.createElement("a");
+        dom.setAttribute(el5,"href","https://unsplash.com/");
+        dom.setAttribute(el5,"target","_blank");
+        dom.setAttribute(el5,"rel","nofollow");
+        var el6 = dom.createTextNode("https://unsplash.com");
+        dom.appendChild(el5, el6);
+        dom.appendChild(el4, el5);
+        dom.appendChild(el3, el4);
+        var el4 = dom.createTextNode("\n    ");
+        dom.appendChild(el3, el4);
+        dom.appendChild(el2, el3);
+        var el3 = dom.createTextNode("\n  ");
+        dom.appendChild(el2, el3);
+        dom.appendChild(el1, el2);
+        var el2 = dom.createTextNode("\n");
+        dom.appendChild(el1, el2);
+        dom.appendChild(el0, el1);
+        var el1 = dom.createTextNode("\n");
         dom.appendChild(el0, el1);
         return el0;
       },
       buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
         var morphs = new Array(1);
-        morphs[0] = dom.createMorphAt(fragment,0,0,contextualElement);
-        dom.insertBoundary(fragment, 0);
-        dom.insertBoundary(fragment, null);
+        morphs[0] = dom.createMorphAt(dom.childAt(fragment, [0]),3,3);
         return morphs;
       },
       statements: [
-        ["block","carousel-container",[],["classNames","demo-carousel"],0,null,["loc",[null,[1,0],[21,23]]]]
+        ["block","carousel-container",[],[],0,null,["loc",[null,[4,2],[19,25]]]]
       ],
       locals: [],
       templates: [child0]
@@ -1427,7 +1390,7 @@ catch(err) {
 if (runningTests) {
   require("dummy/tests/test-helper");
 } else {
-  require("dummy/app")["default"].create({"name":"ember-carousel","version":"0.0.0+824bac26"});
+  require("dummy/app")["default"].create({"name":"ember-carousel","version":"0.0.0+dbba815c"});
 }
 
 /* jshint ignore:end */

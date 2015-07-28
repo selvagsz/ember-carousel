@@ -84820,19 +84820,6 @@ define('ember-carousel/components/carousel-item', ['exports', 'ember', 'ember-ca
   });
 
 });
-define('ember-carousel/computed/findby', ['exports', 'ember'], function (exports, Ember) {
-
-  'use strict';
-
-  exports['default'] = function (depArray, depkey, value) {
-    return Ember['default'].computed(depArray + '.length', depkey, value, {
-      get: function get() {
-        return this.get(depArray).findBy(depkey, value);
-      }
-    });
-  }
-
-});
 define('ember-carousel/services/carousel', ['exports', 'ember'], function (exports, Ember) {
 
   'use strict';
@@ -84859,8 +84846,10 @@ define('ember-carousel/services/carousel', ['exports', 'ember'], function (expor
       var activeCarouselItem = this.get('activeCarouselItem');
       var newActiveCarouselItem = carouselItems[newActiveIndex];
 
-      activeCarouselItem.set('from', direction);
-      newActiveCarouselItem.set('from', direction);
+      run(function () {
+        activeCarouselItem.set('from', direction);
+        newActiveCarouselItem.set('from', direction);
+      });
 
       run.later(function () {
         activeCarouselItem.set('slidingOut', true);
