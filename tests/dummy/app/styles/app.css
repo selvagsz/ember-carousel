@@ -17,6 +17,51 @@ body {
   margin-top: 50px;
 }
 
+.carousel-body {
+  position: relative;
+  overflow: hidden;
+}
+
 .carousel-item {
-  transition: transform .6s ease-in-out;
+  display: none;
+  position: relative;
+  transition: all 0.5s ease-in-out;
+}
+
+
+.carousel-item.active, .carousel-item.left, .carousel-item.right {
+  display: block;
+}
+
+.carousel-item.left, .carousel-item.right {
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.carousel-item.left {
+  left: 100%;
+}
+
+.carousel-item.right {
+  left: -100%;
+}
+
+
+.carousel-item.active.left.slide-out {
+  left: -100%;
+}
+
+.carousel-item.active.right.slide-out {
+  left: 100%;
+}
+
+
+.carousel-item.left.slide-in, .carousel-item.right.slide-in {
+  left: 0;
+}
+
+.carousel-item.active {
+  position: relative;
+  left: 0;
 }

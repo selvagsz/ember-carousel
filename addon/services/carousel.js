@@ -25,12 +25,17 @@ export default Ember.Service.extend({
     newActiveCarouselItem.$()[0].classList.add(direction);
 
     run.later(function() {
+      activeCarouselItem.$()[0].classList.add('slide-out');
+      newActiveCarouselItem.$()[0].classList.add('slide-in');
+    }, 50)
+
+    run.later(function() {
       activeCarouselItem.set('isActive', false);
       newActiveCarouselItem.set('isActive', true);
-    }, 500);
+    }, 550);
   },
 
-  slideLeft() {
+  slideRight() {
     var activeIndex = this.get('activeCarouselItem.index');
     let newActiveIndex = activeIndex - 1;
 
@@ -38,10 +43,10 @@ export default Ember.Service.extend({
       newActiveIndex = this.get('totalCarouselItems') - 1;
     }
 
-    this.slide(newActiveIndex, 'left');
+    this.slide(newActiveIndex, 'right');
   },
 
-  slideRight() {
+  slideLeft() {
     var activeIndex = this.get('activeCarouselItem.index');
     let newActiveIndex = activeIndex + 1;
 
@@ -49,6 +54,6 @@ export default Ember.Service.extend({
       newActiveIndex = 0;
     }
 
-    this.slide(newActiveIndex, 'right');
+    this.slide(newActiveIndex, 'left');
   }
 });

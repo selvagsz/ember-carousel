@@ -1,11 +1,14 @@
-.carousel-item {
-  display: none;
-}
-
-.carousel-item.active {
+.carousel-container {
+  overflow: hidden;
   display: block;
 }
 
-.carousel-indicator {
-  display: inline-block;
+.carousel-body::after, .carousel-body::before {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+.carousel-item {
+  display: none;
 }

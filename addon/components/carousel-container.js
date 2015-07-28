@@ -11,5 +11,9 @@ export default Ember.Component.extend({
   // Initialize the `service:carousel` with the carousel items
   initializeCarouselItems: on('init', function() {
     this.set('carousel.carouselItems', Ember.A());
+  }),
+
+  resetCarousel: on('willDestroyElement', function() {
+    this.initializeCarouselItems();
   })
 });
