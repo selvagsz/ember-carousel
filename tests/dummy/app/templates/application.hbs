@@ -1,21 +1,26 @@
-{{#carousel-container classNames="demo-carousel"}}
-  {{#carousel-body}}
-    {{#carousel-item}}
-      <img class="img-responsive" src="https://ununsplash.imgix.net/photo-1434394673726-e8232a5903b4?dpr=2&fit=crop&fm=jpg&h=700&q=75&w=1050" />
-    {{/carousel-item}}
-    {{#carousel-item}}
-      <img class="img-responsive" src="https://ununsplash.imgix.net/photo-1433833103303-111110aae192?dpr=2&fit=crop&fm=jpg&h=700&q=75&w=1050" />
-    {{/carousel-item}}
-    {{#carousel-item}}
-      <img class="img-responsive" src="https://ununsplash.imgix.net/photo-1433785124354-92116416b870?dpr=2&fit=crop&fm=jpg&h=700&q=75&w=1050" />
-    {{/carousel-item}}
-  {{/carousel-body}}
+<div class="demo-carousel">
+  <h2 class="text-center"> Ember Carousel Addon </h2>
 
-  {{#carousel-arrow direction="left" tagName="button"}}
-    Slide Left
-  {{/carousel-arrow}}
+  {{#carousel-container}}
+    {{#carousel-body}}
+      {{#carousel-item}}
+        <img class="img-responsive" src="https://unsplash.imgix.net/photo-1428452932365-4e7e1c4b0987?dpr=2&fit=crop&fm=jpg&h=700&q=75&w=1050" />
+      {{/carousel-item}}
+      {{#carousel-item}}
+        <img class="img-responsive" src="https://ununsplash.imgix.net/photo-1429547584745-d8bec594c82e?q=75&fm=jpg&w=1080&fit=max&s=1870a82969024ba6816b271a49ca5876" />
+      {{/carousel-item}}
+      {{#carousel-item}}
+        <img class="img-responsive" src="https://ununsplash.imgix.net/photo-1433785124354-92116416b870?dpr=2&fit=crop&fm=jpg&h=700&q=75&w=1050" />
+      {{/carousel-item}}
+    {{/carousel-body}}
 
-  {{#carousel-arrow direction="right" tagName="button"}}
-    Slide Right
-  {{/carousel-arrow}}
-{{/carousel-container}}
+    {{carousel-arrow direction="left" class="line-arrow left"}}
+    {{carousel-arrow direction="right" class="line-arrow right"}}
+  {{/carousel-container}}
+
+  <div class="image-credits">
+    <small>
+      <i>Image Credits <a href="https://unsplash.com/" target="_blank" rel="nofollow">https://unsplash.com</a></i>
+    </small>
+  </div>
+</div>

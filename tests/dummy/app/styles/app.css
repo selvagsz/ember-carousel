@@ -4,6 +4,9 @@
 
 body {
   margin: 0;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serifsans-serif;
+  color: #fff;
+  font-weight: 300;
 }
 
 html, body {
@@ -19,6 +22,24 @@ html, body {
   width: 850px;
   margin: auto;
   margin-top: 50px;
+}
+
+.image-credits {
+  margin-top: 10px;
+  text-align: center;
+}
+
+h2 {
+  font-weight: 300;
+}
+
+a {
+  color: #8FBECC;
+  text-decoration: none;
+}
+
+.text-center {
+  text-align: center;
 }
 
 
@@ -70,4 +91,36 @@ html, body {
 .carousel-item.active {
   position: relative;
   left: 0;
+}
+
+/* Arrows */
+/* Taken from http://codepen.io/trongthanh/pen/uvzxa */
+.line-arrow {
+  position: absolute;
+  overflow: hidden;
+  display: inline-block;
+  font-size: 12px;
+  width: 40px;
+  height: 40px;
+  margin-top: -20px;
+  top: 50%;
+  cursor: pointer;
+}
+
+.line-arrow.left {
+  border-top: 2px solid #a9a9a9;
+  border-left: 2px solid #a9a9a9;
+  transform: rotate(-54deg) skew(-20deg);
+  left: 20px;
+}
+
+.line-arrow.right {
+	border-top: 2px solid #a9a9a9;
+  border-right: 2px solid #a9a9a9;
+  transform: rotate(54deg) skew(20deg);
+  right: 20px;
+}
+
+.line-arrow.left:hover, .line-arrow.right:hover {
+  border-color: #444;
 }

@@ -21,8 +21,10 @@ export default Ember.Service.extend({
     var activeCarouselItem = this.get('activeCarouselItem');
     var newActiveCarouselItem = carouselItems[newActiveIndex];
 
-    activeCarouselItem.set('from', direction);
-    newActiveCarouselItem.set('from', direction);
+    run(function() {
+      activeCarouselItem.set('from', direction);
+      newActiveCarouselItem.set('from', direction);
+    });
 
     run.later(function() {
       activeCarouselItem.set('slidingOut', true);

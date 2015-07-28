@@ -1,4 +1,5 @@
 .carousel-container {
+  position: relative;
   overflow: hidden;
   display: block;
 }
