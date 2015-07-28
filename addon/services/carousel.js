@@ -29,7 +29,7 @@ export default Ember.Service.extend({
     run.later(function() {
       activeCarouselItem.set('slidingOut', true);
       newActiveCarouselItem.set('slidingIn', true);
-    }, 50)
+    }, 50);
 
     run.later(function() {
       activeCarouselItem.setProperties({
