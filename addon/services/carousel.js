@@ -21,17 +21,26 @@ export default Ember.Service.extend({
     var activeCarouselItem = this.get('activeCarouselItem');
     var newActiveCarouselItem = carouselItems[newActiveIndex];
 
-    activeCarouselItem.$()[0].classList.add(direction);
-    newActiveCarouselItem.$()[0].classList.add(direction);
+    activeCarouselItem.set('from', direction);
+    newActiveCarouselItem.set('from', direction);
 
     run.later(function() {
-      activeCarouselItem.$()[0].classList.add('slide-out');
-      newActiveCarouselItem.$()[0].classList.add('slide-in');
+      activeCarouselItem.set('slidingOut', true);
+      newActiveCarouselItem.set('slidingIn', true);
     }, 50)
 
     run.later(function() {
-      activeCarouselItem.set('isActive', false);
-      newActiveCarouselItem.set('isActive', true);
+      activeCarouselItem.setProperties({
+        slidingOut: false,
+        from: null,
+        isActive: false
+      });
+
+      newActiveCarouselItem.setProperties({
+        slidingIn: false,
+        from: null,
+        isActive: true
+      });
     }, 550);
   },
 

@@ -6,7 +6,7 @@ const { on, computed } = Ember;
 export default Ember.Component.extend({
   layout: layout,
   carousel: Ember.inject.service(),
-  classNameBindings: [':carousel-item', 'isActive:active'],
+  classNameBindings: [':carousel-item', 'isActive:active', 'slidingIn:slide-in', 'slidingOut:slide-out', 'from'],
 
   index: 0,
 
