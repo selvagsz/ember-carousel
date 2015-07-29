@@ -6,6 +6,7 @@ const { computed, on, run } = Ember;
 export default Ember.Component.extend({
   layout: layout,
   classNames: ['carousel-container'],
+  'transition-interval': 500,
 
   isCarouselParentContainer: true,
 
@@ -30,6 +31,8 @@ export default Ember.Component.extend({
     var carouselItems = this.get('carouselItems');
     var activeCarouselItem = this.get('activeCarouselItem');
     var newActiveCarouselItem = carouselItems[newActiveIndex];
+    let transitionInterval = this.get('transition-interval');
+    let transitionOffset = 50;
 
     run(function() {
       activeCarouselItem.set('from', direction);
@@ -39,7 +42,7 @@ export default Ember.Component.extend({
     run.later(function() {
       activeCarouselItem.set('slidingOut', true);
       newActiveCarouselItem.set('slidingIn', true);
-    }, 50);
+    }, transitionOffset);
 
     run.later(function() {
       activeCarouselItem.setProperties({
@@ -53,7 +56,7 @@ export default Ember.Component.extend({
         from: null,
         isActive: true
       });
-    }, 550);
+    }, (transitionInterval + transitionOffset));
   },
 
   slideRight() {
