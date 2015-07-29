@@ -84741,7 +84741,7 @@ define('ember-carousel/components/carousel-arrow', ['exports', 'ember', 'ember-c
 
     click: function click() {
       var method = carouselSlideActionMap[this.get('direction')];
-      this.get('carousel')[method]();
+      this.nearestWithProperty('isCarouselParentContainer')[method]();
     }
   });
 
@@ -84760,76 +84760,23 @@ define('ember-carousel/components/carousel-container', ['exports', 'ember', 'emb
 
   'use strict';
 
-  var on = Ember['default'].on;
-
-  exports['default'] = Ember['default'].Component.extend({
-    layout: layout['default'],
-    carousel: Ember['default'].inject.service(),
-    classNames: ['carousel-container'],
-
-    // Initialize the `service:carousel` with the carousel items
-    initializeCarouselItems: on('init', function () {
-      this.set('carousel.carouselItems', Ember['default'].A());
-    }),
-
-    resetCarousel: on('willDestroyElement', function () {
-      this.initializeCarouselItems();
-    })
-  });
-
-});
-define('ember-carousel/components/carousel-indicator', ['exports', 'ember', 'ember-carousel/templates/components/carousel-indicator'], function (exports, Ember, layout) {
-
-  'use strict';
-
-  exports['default'] = Ember['default'].Component.extend({
-    layout: layout['default'],
-    classNameBindings: [':carousel-indicator']
-  });
-
-});
-define('ember-carousel/components/carousel-item', ['exports', 'ember', 'ember-carousel/templates/components/carousel-item'], function (exports, Ember, layout) {
-
-  'use strict';
-
-  var on = Ember['default'].on;
   var computed = Ember['default'].computed;
-
-  exports['default'] = Ember['default'].Component.extend({
-    layout: layout['default'],
-    carousel: Ember['default'].inject.service(),
-    classNameBindings: [':carousel-item', 'isActive:active', 'slidingIn:slide-in', 'slidingOut:slide-out', 'from'],
-
-    index: 0,
-
-    isActive: computed('carousel.carouselItems.[]', {
-      get: function get() {
-        return this === this.get('carousel.carouselItems.firstObject');
-      },
-
-      set: function set(key, value) {
-        return value;
-      }
-    }),
-
-    registerOnCarosuelBody: on('init', function () {
-      var carouselSerivce = this.get('carousel');
-      carouselSerivce.registerCarouselItem(this);
-      this.set('index', carouselSerivce.get('totalCarouselItems') - 1);
-    })
-  });
-
-});
-define('ember-carousel/services/carousel', ['exports', 'ember'], function (exports, Ember) {
-
-  'use strict';
-
-  var computed = Ember['default'].computed;
+  var on = Ember['default'].on;
   var run = Ember['default'].run;
 
-  exports['default'] = Ember['default'].Service.extend({
-    carouselItems: Ember['default'].A(),
+  exports['default'] = Ember['default'].Component.extend({
+    layout: layout['default'],
+    classNames: ['carousel-container'],
+    'transition-interval': 500,
+
+    isCarouselParentContainer: true,
+
+    carouselItems: null,
     totalCarouselItems: computed.reads('carouselItems.length'),
+
+    initializeCarouselItems: on('init', function () {
+      this.set('carouselItems', Ember['default'].A());
+    }),
 
     activeCarouselItem: computed('carouselItems.length', 'carouselItems.@each.isActive', {
       get: function get() {
@@ -84845,6 +84792,8 @@ define('ember-carousel/services/carousel', ['exports', 'ember'], function (expor
       var carouselItems = this.get('carouselItems');
       var activeCarouselItem = this.get('activeCarouselItem');
       var newActiveCarouselItem = carouselItems[newActiveIndex];
+      var transitionInterval = this.get('transition-interval');
+      var transitionOffset = 50;
 
       run(function () {
         activeCarouselItem.set('from', direction);
@@ -84854,7 +84803,7 @@ define('ember-carousel/services/carousel', ['exports', 'ember'], function (expor
       run.later(function () {
         activeCarouselItem.set('slidingOut', true);
         newActiveCarouselItem.set('slidingIn', true);
-      }, 50);
+      }, transitionOffset);
 
       run.later(function () {
         activeCarouselItem.setProperties({
@@ -84868,7 +84817,7 @@ define('ember-carousel/services/carousel', ['exports', 'ember'], function (expor
           from: null,
           isActive: true
         });
-      }, 550);
+      }, transitionInterval + transitionOffset);
     },
 
     slideRight: function slideRight() {
@@ -84892,6 +84841,41 @@ define('ember-carousel/services/carousel', ['exports', 'ember'], function (expor
 
       this.slide(newActiveIndex, 'left');
     }
+  });
+
+});
+define('ember-carousel/components/carousel-item', ['exports', 'ember', 'ember-carousel/templates/components/carousel-item'], function (exports, Ember, layout) {
+
+  'use strict';
+
+  var on = Ember['default'].on;
+  var computed = Ember['default'].computed;
+
+  exports['default'] = Ember['default'].Component.extend({
+    layout: layout['default'],
+    carousel: Ember['default'].inject.service(),
+    classNameBindings: [':carousel-item', 'isActive:active', 'slidingIn:slide-in', 'slidingOut:slide-out', 'from'],
+
+    index: 0,
+
+    _carouselContainer: null,
+
+    isActive: computed('_carouselContainer.carouselItems.[]', {
+      get: function get() {
+        return this === this.get('_carouselContainer.carouselItems.firstObject');
+      },
+
+      set: function set(key, value) {
+        return value;
+      }
+    }),
+
+    registerOnCarosuelBody: on('init', function () {
+      var carouselContainer = this.nearestWithProperty('isCarouselParentContainer');
+      this.set('_carouselContainer', carouselContainer);
+      carouselContainer.registerCarouselItem(this);
+      this.set('index', carouselContainer.get('totalCarouselItems') - 1);
+    })
   });
 
 });
@@ -85009,53 +84993,6 @@ define('ember-carousel/templates/components/carousel-container', ['exports'], fu
           }
         },
         "moduleName": "modules/ember-carousel/templates/components/carousel-container.hbs"
-      },
-      arity: 0,
-      cachedFragment: null,
-      hasRendered: false,
-      buildFragment: function buildFragment(dom) {
-        var el0 = dom.createDocumentFragment();
-        var el1 = dom.createComment("");
-        dom.appendChild(el0, el1);
-        var el1 = dom.createTextNode("\n");
-        dom.appendChild(el0, el1);
-        return el0;
-      },
-      buildRenderNodes: function buildRenderNodes(dom, fragment, contextualElement) {
-        var morphs = new Array(1);
-        morphs[0] = dom.createMorphAt(fragment,0,0,contextualElement);
-        dom.insertBoundary(fragment, 0);
-        return morphs;
-      },
-      statements: [
-        ["content","yield",["loc",[null,[1,0],[1,9]]]]
-      ],
-      locals: [],
-      templates: []
-    };
-  }()));
-
-});
-define('ember-carousel/templates/components/carousel-indicator', ['exports'], function (exports) {
-
-  'use strict';
-
-  exports['default'] = Ember.HTMLBars.template((function() {
-    return {
-      meta: {
-        "revision": "Ember@1.13.3",
-        "loc": {
-          "source": null,
-          "start": {
-            "line": 1,
-            "column": 0
-          },
-          "end": {
-            "line": 2,
-            "column": 0
-          }
-        },
-        "moduleName": "modules/ember-carousel/templates/components/carousel-indicator.hbs"
       },
       arity: 0,
       cachedFragment: null,

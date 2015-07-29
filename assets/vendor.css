@@ -4,6 +4,11 @@
   display: block;
 }
 
+.carousel-body {
+  position: relative;
+  overflow: hidden;
+}
+
 .carousel-body::after, .carousel-body::before {
   content: '';
   display: table;
@@ -12,4 +17,8 @@
 
 .carousel-item {
   display: none;
+}
+
+.carousel-item.active {
+  display: block;
 }
