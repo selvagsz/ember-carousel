@@ -27,6 +27,6 @@ export default Ember.Component.extend({
 
   click() {
     var method = carouselSlideActionMap[this.get('direction')];
-    this.get('carousel')[method]();
+    this.nearestWithProperty('isCarouselParentContainer')[method]();
   }
 });

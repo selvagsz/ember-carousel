@@ -10,9 +10,11 @@ export default Ember.Component.extend({
 
   index: 0,
 
-  isActive: computed('carousel.carouselItems.[]', {
+  _carouselContainer: null,
+
+  isActive: computed('_carouselContainer.carouselItems.[]', {
     get() {
-      return this === this.get('carousel.carouselItems.firstObject');
+      return this === this.get('_carouselContainer.carouselItems.firstObject');
     },
 
     set(key, value) {
@@ -21,8 +23,9 @@ export default Ember.Component.extend({
   }),
 
   registerOnCarosuelBody: on('init', function() {
-    const carouselSerivce = this.get('carousel');
-    carouselSerivce.registerCarouselItem(this);
-    this.set('index', carouselSerivce.get('totalCarouselItems') - 1);
+    const carouselContainer = this.nearestWithProperty('isCarouselParentContainer');
+    this.set('_carouselContainer', carouselContainer);
+    carouselContainer.registerCarouselItem(this);
+    this.set('index', carouselContainer.get('totalCarouselItems') - 1);
   })
 });

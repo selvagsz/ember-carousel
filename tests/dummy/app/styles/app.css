@@ -44,19 +44,13 @@ a {
 
 
 /* For Carousel Component */
-.carousel-body {
-  position: relative;
-  overflow: hidden;
-}
-
 .carousel-item {
-  display: none;
   position: relative;
   transition: all 0.5s ease-in-out;
 }
 
 
-.carousel-item.active, .carousel-item.left, .carousel-item.right {
+.carousel-item.left, .carousel-item.right {
   display: block;
 }
 
