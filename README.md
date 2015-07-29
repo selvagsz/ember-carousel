@@ -1,6 +1,31 @@
 # Ember-carousel
 
-This README outlines the details of collaborating on this Ember addon.
+An ember addon for Carousel component
+
+```handlebars
+  {{#carousel-container transition-interval=400}}
+    {{#carousel-body}}
+      {{#carousel-item}}
+        Emberjs
+      {{/carousel-item}}
+      {{#carousel-item}}
+        Reactjs
+      {{/carousel-item}}
+      {{#carousel-item}}
+        Angularjs
+      {{/carousel-item}}
+    {{/carousel-body}}
+
+    {{#carousel-arrow direction="left" tagName="button"}}
+      Slide Left
+    {{/carousel-arrow}}
+    {{#carousel-arrow direction="right" tagName="button"}}
+      Slide Right
+    {{/carousel-arrow}}
+  {{/carousel-container}}
+```
+
+[DEMO](http://selvagsz.github.io/ember-carousel/)
 
 ## Installation
 
