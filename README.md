@@ -2,6 +2,14 @@
 
 An ember addon for Carousel component
 
+## Usage
+
+From within your Ember CLI application, run the following:
+
+`ember install ember-carousel`
+
+Add invoke the component as follows
+
 ```handlebars
   {{#carousel-container transition-interval=400}}
     {{#carousel-body}}
@@ -25,9 +33,9 @@ An ember addon for Carousel component
   {{/carousel-container}}
 ```
 
-[DEMO](http://selvagsz.github.io/ember-carousel/)
+[DEMO](http://selvagsz.github.io/#/demos/carousel)
 
-## Installation
+## Development
 
 * `git clone` this repository
 * `npm install`

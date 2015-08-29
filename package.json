@@ -37,7 +37,9 @@
   },
   "keywords": [
     "ember-addon",
-    "carousel-component"
+    "carousel-component",
+    "ember carousel",
+    "carousel"
   ],
   "dependencies": {
     "ember-cli-babel": "^5.0.0",
@@ -45,6 +47,6 @@
   },
   "ember-addon": {
     "configPath": "tests/dummy/config",
-    "demoURL": "http://selvagsz.github.io/ember-carousel/"
+    "demoURL": "http://selvagsz.github.io/#/demos/carousel"
   }
 }
