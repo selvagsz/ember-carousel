@@ -68,8 +68,8 @@ export default Ember.Component.extend({
       newActiveIndex = this.get('totalCarouselItems') - 1;
     }
 
-    if (this.onslide) {
-      this.sendAction('onslide', {
+    if (this.get('on-slide')) {
+      this.sendAction('on-slide', {
         index: newActiveIndex,
         previousIndex: activeIndex,
         direction
@@ -88,8 +88,8 @@ export default Ember.Component.extend({
       newActiveIndex = 0;
     }
 
-    if (this.onslide) {
-      this.sendAction('onslide', {
+    if (this.get('on-slide')) {
+      this.sendAction('on-slide', {
         index: newActiveIndex,
         previousIndex: activeIndex,
         direction

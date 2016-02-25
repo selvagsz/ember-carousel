@@ -42,7 +42,7 @@ Add invoke the component as follows
 ### `{{carousel-container}}`
 
 - `transition-interval` - Defaults to `500`.
-- `onslide` - Optional, an action that receives one parameter, an object like `{ index: 3, previousIndex: 2, direction: 'right' }`.  
+- `on-slide` - Optional, an action that receives one parameter, an object like `{ index: 3, previousIndex: 2, direction: 'right' }`.  
   Triggered before the transition is completed.
 
 
