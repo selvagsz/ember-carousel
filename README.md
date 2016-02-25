@@ -1,39 +1,50 @@
-# Ember-carousel
+# ember-carousel
 
 An ember addon for Carousel component
+
+[DEMO](http://selvagsz.github.io/#/demos/carousel)
 
 ## Usage
 
 From within your Ember CLI application, run the following:
 
-`ember install ember-carousel`
+```no-highlight
+ember install ember-carousel
+```
 
 Add invoke the component as follows
 
 ```handlebars
-  {{#carousel-container transition-interval=400}}
-    {{#carousel-body}}
-      {{#carousel-item}}
-        Emberjs
-      {{/carousel-item}}
-      {{#carousel-item}}
-        Reactjs
-      {{/carousel-item}}
-      {{#carousel-item}}
-        Angularjs
-      {{/carousel-item}}
-    {{/carousel-body}}
+{{#carousel-container transition-interval=400}}
+  {{#carousel-body}}
+    {{#carousel-item}}
+      Emberjs
+    {{/carousel-item}}
+    {{#carousel-item}}
+      Reactjs
+    {{/carousel-item}}
+    {{#carousel-item}}
+      Angularjs
+    {{/carousel-item}}
+  {{/carousel-body}}
 
-    {{#carousel-arrow direction="left" tagName="button"}}
-      Slide Left
-    {{/carousel-arrow}}
-    {{#carousel-arrow direction="right" tagName="button"}}
-      Slide Right
-    {{/carousel-arrow}}
-  {{/carousel-container}}
+  {{#carousel-arrow direction="left" tagName="button"}}
+    Slide Left
+  {{/carousel-arrow}}
+  {{#carousel-arrow direction="right" tagName="button"}}
+    Slide Right
+  {{/carousel-arrow}}
+{{/carousel-container}}
 ```
 
-[DEMO](http://selvagsz.github.io/#/demos/carousel)
+## Attributes
+
+### `{{carousel-container}}`
+
+- `transition-interval` - Defaults to `500`.
+- `on-slide` - Optional, an action that receives one parameter, an object like `{ index: 3, previousIndex: 2, direction: 'right' }`.  
+  Triggered before the transition is completed.
+
 
 ## Development
 
