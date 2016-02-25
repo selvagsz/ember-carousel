@@ -60,24 +60,42 @@ export default Ember.Component.extend({
   },
 
   slideRight() {
-    var activeIndex = this.get('activeCarouselItem.index');
+    let direction = 'right';
+    let activeIndex = this.get('activeCarouselItem.index');
     let newActiveIndex = activeIndex - 1;
 
     if(activeIndex === 0) {
       newActiveIndex = this.get('totalCarouselItems') - 1;
     }
 
-    this.slide(newActiveIndex, 'right');
+    if (this.onslide) {
+      this.sendAction('onslide', {
+        index: newActiveIndex,
+        previousIndex: activeIndex,
+        direction
+      });
+    }
+
+    this.slide(newActiveIndex, direction);
   },
 
   slideLeft() {
-    var activeIndex = this.get('activeCarouselItem.index');
+    let direction = 'left';
+    let activeIndex = this.get('activeCarouselItem.index');
     let newActiveIndex = activeIndex + 1;
 
     if(activeIndex === (this.get('totalCarouselItems') - 1)) {
       newActiveIndex = 0;
     }
 
-    this.slide(newActiveIndex, 'left');
+    if (this.onslide) {
+      this.sendAction('onslide', {
+        index: newActiveIndex,
+        previousIndex: activeIndex,
+        direction
+      });
+    }
+
+    this.slide(newActiveIndex, direction);
   }
 });
