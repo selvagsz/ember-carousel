@@ -1,7 +1,7 @@
 {
   "name": "ember-carousel",
-  "version": "0.0.0",
-  "description": "The default blueprint for ember-cli addons.",
+  "version": "0.0.2",
+  "description": "An Ember Carousel component",
   "directories": {
     "doc": "doc",
     "test": "tests"
@@ -11,11 +11,11 @@
     "start": "ember server",
     "test": "ember try:testall"
   },
-  "repository": "",
+  "repository": "https://github.com/selvagsz/ember-carousel",
   "engines": {
     "node": ">= 0.10.0"
   },
-  "author": "",
+  "author": "selvaganesh.b@zohocorp.com",
   "license": "MIT",
   "devDependencies": {
     "broccoli-asset-rev": "^2.2.0",
@@ -46,7 +46,7 @@
   ],
   "dependencies": {
     "ember-cli-babel": "^5.1.5",
-    "ember-cli-htmlbars": "^1.0.1"    
+    "ember-cli-htmlbars": "^1.0.1"
   },
   "ember-addon": {
     "configPath": "tests/dummy/config",
