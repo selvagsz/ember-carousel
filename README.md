@@ -2,7 +2,7 @@
 
 An ember addon for Carousel component
 
-[DEMO](http://selvagsz.github.io/#/demos/carousel)
+[DEMO](http://selvagsz.github.io/ember-carousel)
 
 ## Usage
 
