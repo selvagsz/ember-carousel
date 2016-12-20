@@ -1,31 +1,27 @@
-import Ember from 'ember';
+import Component from 'ember-component';
 import layout from '../templates/components/carousel-item';
 
-const { on, computed } = Ember;
+import computed from 'ember-computed';
+import get from 'ember-metal/get';
+import set from 'ember-metal/set';
 
-export default Ember.Component.extend({
-  layout: layout,
-  carousel: Ember.inject.service(),
+export default Component.extend({
   classNameBindings: [':carousel-item', 'isActive:active', 'slidingIn:slide-in', 'slidingOut:slide-out', 'from'],
 
+  layout: layout,
   index: 0,
-
   _carouselContainer: null,
 
-  isActive: computed('_carouselContainer.carouselItems.[]', {
-    get() {
-      return this === this.get('_carouselContainer.carouselItems.firstObject');
-    },
+  init() {
+    this._super(...arguments);
+    let carouselContainer = this.nearestWithProperty('isCarouselParentContainer');
 
-    set(key, value) {
-      return value;
-    }
-  }),
-
-  registerOnCarosuelBody: on('init', function() {
-    const carouselContainer = this.nearestWithProperty('isCarouselParentContainer');
-    this.set('_carouselContainer', carouselContainer);
+    set(this, '_carouselContainer', carouselContainer);
     carouselContainer.registerCarouselItem(this);
-    this.set('index', carouselContainer.get('totalCarouselItems') - 1);
+    set(this, 'index', get(carouselContainer, 'totalCarouselItems') - 1);
+  },
+
+  isActive: computed('_carouselContainer.carouselItems.[]', function() {
+    return this === get(this, '_carouselContainer.carouselItems.firstObject');
   })
 });

@@ -1,5 +1,8 @@
-import Ember from 'ember';
+import Component from 'ember-component';
 import layout from '../templates/components/carousel-arrow';
+
+import computed from 'ember-computed';
+import get from 'ember-metal/get';
 
 const carouselArrowClassMap = {
   left: 'carousel-left-arrow',
@@ -11,22 +14,16 @@ const carouselSlideActionMap = {
   right: 'slideRight'
 };
 
-const computed = Ember.computed;
-
-export default Ember.Component.extend({
-  layout: layout,
-  carousel: Ember.inject.service(),
+export default Component.extend({
   classNamesBindings: ['carousel-arrow-class'],
-  direction: 'left',
+  layout: layout,
 
-  'carousel-arrow-class': computed('direction', {
-    get() {
-      return carouselArrowClassMap[this.get('direction')];
-    }
+  'carousel-arrow-class': computed('direction', function() {
+    return carouselArrowClassMap[get(this, 'direction')];
   }),
 
   click() {
-    var method = carouselSlideActionMap[this.get('direction')];
+    let method = carouselSlideActionMap[get(this, 'direction')];
     this.nearestWithProperty('isCarouselParentContainer')[method]();
   }
 });

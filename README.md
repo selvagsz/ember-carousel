@@ -15,7 +15,7 @@ ember install ember-carousel
 Add invoke the component as follows
 
 ```handlebars
-{{#carousel-container transition-interval=400}}
+{{#carousel-container transitionInterval=400}}
   {{#carousel-body}}
     {{#carousel-item}}
       Emberjs

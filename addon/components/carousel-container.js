@@ -1,50 +1,52 @@
-import Ember from 'ember';
+import Component from 'ember-component';
 import layout from '../templates/components/carousel-container';
 
-const { computed, on, run } = Ember;
+import computed, { reads } from 'ember-computed';
+import run, { later } from 'ember-runloop';
+import { A } from 'ember-array/utils';
+import get from 'ember-metal/get';
+import set from 'ember-metal/set';
 
-export default Ember.Component.extend({
-  layout: layout,
+export default Component.extend({
   classNames: ['carousel-container'],
-  'transition-interval': 500,
 
+  layout: layout,
+  transitionInterval: 500,
   isCarouselParentContainer: true,
-
   carouselItems: null,
-  totalCarouselItems: computed.reads('carouselItems.length'),
+  totalCarouselItems: reads('carouselItems.length'),
 
-  initializeCarouselItems: on('init', function() {
-    this.set('carouselItems', Ember.A());
-  }),
+  init() {
+    this._super(...arguments);
+    set(this, 'carouselItems', A());
+  },
 
-  activeCarouselItem: computed('carouselItems.length', 'carouselItems.@each.isActive', {
-    get() {
-      return this.get('carouselItems').findBy('isActive');
-    }
+  activeCarouselItem: computed('carouselItems.length', 'carouselItems.@each.isActive', function () {
+    return get(this, 'carouselItems').findBy('isActive');
   }),
 
   registerCarouselItem(carouselItem) {
-    this.get('carouselItems').pushObject(carouselItem);
+    get(this, 'carouselItems').pushObject(carouselItem);
   },
 
   slide(newActiveIndex, direction) {
-    var carouselItems = this.get('carouselItems');
-    var activeCarouselItem = this.get('activeCarouselItem');
-    var newActiveCarouselItem = carouselItems[newActiveIndex];
-    let transitionInterval = this.get('transition-interval');
+    let carouselItems = get(this, 'carouselItems');
+    let activeCarouselItem = get(this, 'activeCarouselItem');
+    let newActiveCarouselItem = carouselItems[newActiveIndex];
+    let transitionInterval = get(this, 'transitionInterval');
     let transitionOffset = 50;
 
     run(function() {
-      activeCarouselItem.set('from', direction);
-      newActiveCarouselItem.set('from', direction);
+      set(activeCarouselItem, 'from', direction);
+      set(newActiveCarouselItem, 'from', direction);
     });
 
-    run.later(function() {
-      activeCarouselItem.set('slidingOut', true);
-      newActiveCarouselItem.set('slidingIn', true);
+    later(function() {
+      set(activeCarouselItem, 'slidingOut', true);
+      set(newActiveCarouselItem, 'slidingIn', true);
     }, transitionOffset);
 
-    run.later(function() {
+    later(function() {
       activeCarouselItem.setProperties({
         slidingOut: false,
         from: null,
@@ -61,14 +63,14 @@ export default Ember.Component.extend({
 
   slideRight() {
     let direction = 'right';
-    let activeIndex = this.get('activeCarouselItem.index');
+    let activeIndex = get(this, 'activeCarouselItem.index');
     let newActiveIndex = activeIndex - 1;
 
-    if(activeIndex === 0) {
-      newActiveIndex = this.get('totalCarouselItems') - 1;
+    if (activeIndex === 0) {
+      newActiveIndex = get(this, 'totalCarouselItems') - 1;
     }
 
-    if (this.get('on-slide')) {
+    if (get(this, 'on-slide')) {
       this.sendAction('on-slide', {
         index: newActiveIndex,
         previousIndex: activeIndex,
@@ -81,14 +83,14 @@ export default Ember.Component.extend({
 
   slideLeft() {
     let direction = 'left';
-    let activeIndex = this.get('activeCarouselItem.index');
+    let activeIndex = get(this, 'activeCarouselItem.index');
     let newActiveIndex = activeIndex + 1;
 
-    if(activeIndex === (this.get('totalCarouselItems') - 1)) {
+    if (activeIndex === (get(this, 'totalCarouselItems') - 1)) {
       newActiveIndex = 0;
     }
 
-    if (this.get('on-slide')) {
+    if (get(this, 'on-slide')) {
       this.sendAction('on-slide', {
         index: newActiveIndex,
         previousIndex: activeIndex,
