@@ -70,8 +70,8 @@ export default Component.extend({
       newActiveIndex = get(this, 'totalCarouselItems') - 1;
     }
 
-    if (get(this, 'on-slide')) {
-      this.sendAction('on-slide', {
+    if (get(this, 'onSlide')) {
+      this.sendAction('onSlide', {
         index: newActiveIndex,
         previousIndex: activeIndex,
         direction
@@ -90,8 +90,8 @@ export default Component.extend({
       newActiveIndex = 0;
     }
 
-    if (get(this, 'on-slide')) {
-      this.sendAction('on-slide', {
+    if (get(this, 'onSlide')) {
+      this.sendAction('onSlide', {
         index: newActiveIndex,
         previousIndex: activeIndex,
         direction
