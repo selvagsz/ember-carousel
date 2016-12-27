@@ -45,6 +45,10 @@ Add invoke the component as follows
 - `onSlide` - Optional, an action that receives one parameter, an object like `{ index: 3, previousIndex: 2, direction: 'right' }`.  
   Triggered before the transition is completed.
 
+### `{{carousel-arrow}}`
+
+- `direction` - Either `'left'` or `'right'`.
+
 
 ## Development
 
