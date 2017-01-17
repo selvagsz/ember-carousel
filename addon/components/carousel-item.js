@@ -12,8 +12,7 @@ export default Component.extend({
   index: 0,
   _carouselContainer: null,
 
-  init() {
-    this._super(...arguments);
+  didInsertElement() {
     let carouselContainer = this.nearestWithProperty('isCarouselParentContainer');
 
     set(this, '_carouselContainer', carouselContainer);
