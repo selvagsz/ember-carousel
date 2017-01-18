@@ -14,10 +14,9 @@ export default Component.extend(ChildMixin, {
   carouselItems: computed.readOnly('parentComponent.carouselItems'),
 
   didInsertElement() {
-    let carouselContainer = this.get('parentComponent');
-    let totalCarouselItems = get(carouselContainer, 'totalCarouselItems');
+    let allItems = this.get('parentComponent.carouselItems');
 
-    set(this, 'index', totalCarouselItems - 1);
+    set(this, 'index', allItems.indexOf(this));
   },
 
   isActive: computed('carouselItems.[]', function() {
