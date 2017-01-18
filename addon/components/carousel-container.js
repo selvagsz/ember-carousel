@@ -1,19 +1,17 @@
 import Component from 'ember-component';
 import layout from '../templates/components/carousel-container';
 
-import { ParentMixin } from 'ember-composability-tools';
 import computed, { reads } from 'ember-computed';
 import run, { later } from 'ember-runloop';
 import { A } from 'ember-array/utils';
 import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 
-export default Component.extend(ParentMixin, {
+export default Component.extend({
   classNames: ['carousel-container'],
 
   layout: layout,
   transitionInterval: 500,
-  carouselItems: computed.alias('childComponents'),
   totalCarouselItems: reads('carouselItems.length'),
 
   init() {
@@ -96,6 +94,10 @@ export default Component.extend(ParentMixin, {
       }
 
       this.slide(newActiveIndex, direction);
+    },
+
+    registerItem(item) {
+      this.get('carouselItems').pushObject(item);
     }
   }
 });

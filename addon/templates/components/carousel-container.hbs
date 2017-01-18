@@ -1,6 +1,8 @@
 {{yield
   (hash
-    item=(component 'carousel-item')
+    item=(component 'carousel-item'
+      register=(action 'registerItem')
+      allItems=carouselItems)
   )
   (hash
     previous=(action 'slideLeft')
