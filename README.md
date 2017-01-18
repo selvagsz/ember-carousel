@@ -15,39 +15,50 @@ ember install ember-carousel
 Add invoke the component as follows
 
 ```handlebars
-{{#carousel-container transitionInterval=400}}
-  {{#carousel-body}}
-    {{#carousel-item}}
+{{#carousel-container transitionInterval=400 as |ui act|}}
+  <div class="carousel-body">
+    {{#ui.item}}
       Emberjs
-    {{/carousel-item}}
-    {{#carousel-item}}
+    {{/ui.item}}
+    {{#ui.item}}
       Reactjs
-    {{/carousel-item}}
-    {{#carousel-item}}
+    {{/ui.item}}
+    {{#ui.item}}
       Angularjs
-    {{/carousel-item}}
-  {{/carousel-body}}
+    {{/ui.item}}
+  </div>
 
-  {{#carousel-arrow direction="left" tagName="button"}}
+  <button onclick={{act.previous}}>
     Slide Left
-  {{/carousel-arrow}}
-  {{#carousel-arrow direction="right" tagName="button"}}
+  </button>
+  <button onclick={{act.next}}>
     Slide Right
-  {{/carousel-arrow}}
+  </button>
 {{/carousel-container}}
 ```
 
-## Attributes
+## API
 
 ### `{{carousel-container}}`
+
+This is the primary component to start displaying carousel items.
+
+#### Attributes
 
 - `transitionInterval` - Defaults to `500`.
 - `onSlide` - Optional, an action that receives one parameter, an object like `{ index: 3, previousIndex: 2, direction: 'right' }`.  
   Triggered before the transition is completed.
 
-### `{{carousel-arrow}}`
+#### Yielded Params
 
-- `direction` - Either `'left'` or `'right'`.
+This component yields two hashes, e.g. `{{#carousel-container as |ui act|}}`.
+These parameters `ui` and `act` can be called anything, but they contain the following items:
+
+- `ui` - is a hash with the following component items:
+  * `item` which is a component that should contain your slide contents.
+- `act` - is a hash with the following action items:
+  * `previous` - A closure action that changes to the previous slide.
+  * `next` - A closure action that changes to the next slide.
 
 
 ## Development

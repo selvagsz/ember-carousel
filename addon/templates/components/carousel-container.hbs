@@ -1,1 +1,9 @@
-{{yield}}
+{{yield
+  (hash
+    item=(component 'carousel-item')
+  )
+  (hash
+    previous=(action 'slideLeft')
+    next=(action 'slideRight')
+  )
+}}

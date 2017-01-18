@@ -1,19 +1,19 @@
 import Component from 'ember-component';
 import layout from '../templates/components/carousel-container';
 
+import { ParentMixin } from 'ember-composability-tools';
 import computed, { reads } from 'ember-computed';
 import run, { later } from 'ember-runloop';
 import { A } from 'ember-array/utils';
 import get from 'ember-metal/get';
 import set from 'ember-metal/set';
 
-export default Component.extend({
+export default Component.extend(ParentMixin, {
   classNames: ['carousel-container'],
 
   layout: layout,
   transitionInterval: 500,
-  isCarouselParentContainer: true,
-  carouselItems: null,
+  carouselItems: computed.alias('childComponents'),
   totalCarouselItems: reads('carouselItems.length'),
 
   init() {
@@ -24,10 +24,6 @@ export default Component.extend({
   activeCarouselItem: computed('carouselItems.length', 'carouselItems.@each.isActive', function () {
     return get(this, 'carouselItems').findBy('isActive');
   }),
-
-  registerCarouselItem(carouselItem) {
-    get(this, 'carouselItems').pushObject(carouselItem);
-  },
 
   slide(newActiveIndex, direction) {
     let carouselItems = get(this, 'carouselItems');
@@ -61,43 +57,45 @@ export default Component.extend({
     }, (transitionInterval + transitionOffset));
   },
 
-  slideRight() {
-    let direction = 'right';
-    let activeIndex = get(this, 'activeCarouselItem.index');
-    let newActiveIndex = activeIndex - 1;
+  actions: {
+    slideRight() {
+      let direction = 'right';
+      let activeIndex = get(this, 'activeCarouselItem.index');
+      let newActiveIndex = activeIndex - 1;
 
-    if (activeIndex === 0) {
-      newActiveIndex = get(this, 'totalCarouselItems') - 1;
+      if (activeIndex === 0) {
+        newActiveIndex = get(this, 'totalCarouselItems') - 1;
+      }
+
+      if (get(this, 'onSlide')) {
+        this.sendAction('onSlide', {
+          index: newActiveIndex,
+          previousIndex: activeIndex,
+          direction
+        });
+      }
+
+      this.slide(newActiveIndex, direction);
+    },
+
+    slideLeft() {
+      let direction = 'left';
+      let activeIndex = get(this, 'activeCarouselItem.index');
+      let newActiveIndex = activeIndex + 1;
+
+      if (activeIndex === (get(this, 'totalCarouselItems') - 1)) {
+        newActiveIndex = 0;
+      }
+
+      if (get(this, 'onSlide')) {
+        this.sendAction('onSlide', {
+          index: newActiveIndex,
+          previousIndex: activeIndex,
+          direction
+        });
+      }
+
+      this.slide(newActiveIndex, direction);
     }
-
-    if (get(this, 'onSlide')) {
-      this.sendAction('onSlide', {
-        index: newActiveIndex,
-        previousIndex: activeIndex,
-        direction
-      });
-    }
-
-    this.slide(newActiveIndex, direction);
-  },
-
-  slideLeft() {
-    let direction = 'left';
-    let activeIndex = get(this, 'activeCarouselItem.index');
-    let newActiveIndex = activeIndex + 1;
-
-    if (activeIndex === (get(this, 'totalCarouselItems') - 1)) {
-      newActiveIndex = 0;
-    }
-
-    if (get(this, 'onSlide')) {
-      this.sendAction('onSlide', {
-        index: newActiveIndex,
-        previousIndex: activeIndex,
-        direction
-      });
-    }
-
-    this.slide(newActiveIndex, direction);
   }
 });
