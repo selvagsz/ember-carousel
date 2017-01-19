@@ -15,7 +15,7 @@ ember install ember-carousel
 Add invoke the component as follows
 
 ```handlebars
-{{#carousel-container transitionInterval=400 as |ui act|}}
+{{#carousel-container transitionInterval=400 as |ui controls|}}
   <div class="carousel-body">
     {{#ui.item}}
       Emberjs
@@ -28,10 +28,10 @@ Add invoke the component as follows
     {{/ui.item}}
   </div>
 
-  <button onclick={{act.previous}}>
+  <button onclick={{controls.previous}}>
     Slide Left
   </button>
-  <button onclick={{act.next}}>
+  <button onclick={{controls.next}}>
     Slide Right
   </button>
 {{/carousel-container}}
@@ -55,8 +55,8 @@ This component yields two hashes, e.g. `{{#carousel-container as |ui act|}}`.
 These parameters `ui` and `act` can be called anything, but they contain the following items:
 
 - `ui` - is a hash with the following component items:
-  * `item` which is a component that should contain your slide contents.
-- `act` - is a hash with the following action items:
+  * `item` - A component that should contain your slide contents, used like so `{{ui.item}}you content{{/ui.item}}`.
+- `controls` - is a hash with the following action items:
   * `previous` - A closure action that changes to the previous slide.
   * `next` - A closure action that changes to the next slide.
 
