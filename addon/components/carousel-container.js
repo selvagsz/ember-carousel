@@ -1,16 +1,14 @@
-import Component from 'ember-component';
+import Component from '@ember/component';
+import { computed, get, set } from '@ember/object';
+import { reads } from '@ember/object/computed';
+import { run, later } from '@ember/runloop';
 import layout from '../templates/components/carousel-container';
-
-import computed, { reads } from 'ember-computed';
-import run, { later } from 'ember-runloop';
-import { A } from 'ember-array/utils';
-import get from 'ember-metal/get';
-import set from 'ember-metal/set';
+import { A } from '@ember/array';
 
 export default Component.extend({
   classNames: ['carousel-container'],
 
-  layout: layout,
+  layout,
   transitionInterval: 500,
   totalCarouselItems: reads('carouselItems.length'),
 
@@ -19,7 +17,7 @@ export default Component.extend({
     set(this, 'carouselItems', A());
   },
 
-  activeCarouselItem: computed('carouselItems.length', 'carouselItems.@each.isActive', function () {
+  activeCarouselItem: computed('carouselItems.{length,@each.isActive}', function () {
     return get(this, 'carouselItems').findBy('isActive');
   }),
 
@@ -66,7 +64,7 @@ export default Component.extend({
       }
 
       if (get(this, 'onSlide')) {
-        this.sendAction('onSlide', {
+        get(this, 'onSlide')({
           index: newActiveIndex,
           previousIndex: activeIndex,
           direction
@@ -86,7 +84,7 @@ export default Component.extend({
       }
 
       if (get(this, 'onSlide')) {
-        this.sendAction('onSlide', {
+        get(this, 'onSlide')({
           index: newActiveIndex,
           previousIndex: activeIndex,
           direction
