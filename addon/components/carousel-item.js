@@ -1,18 +1,16 @@
-import Component from 'ember-component';
+import Component from '@ember/component';
+import { computed, get, set } from '@ember/object';
 import layout from '../templates/components/carousel-item';
-
-import computed from 'ember-computed';
-import get from 'ember-metal/get';
-import set from 'ember-metal/set';
 
 export default Component.extend({
   classNameBindings: [':carousel-item', 'isActive:active', 'slidingIn:slide-in', 'slidingOut:slide-out', 'from'],
 
-  layout: layout,
+  layout,
   index: 0,
 
   didInsertElement() {
-    this.sendAction('register', this);
+    this._super(...arguments);
+    get(this, 'register')(this);
 
     let allItems = this.get('allItems');
 

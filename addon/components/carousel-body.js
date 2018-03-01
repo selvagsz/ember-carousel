@@ -1,8 +1,7 @@
-import Component from 'ember-component';
+import Component from '@ember/component';
 import layout from '../templates/components/carousel-body';
 
-
 export default Component.extend({
-  layout: layout,
+  layout,
   classNames: ['carousel-body']
 });

@@ -1,8 +1,6 @@
-import Component from 'ember-component';
+import Component from '@ember/component';
+import { computed, get } from '@ember/object';
 import layout from '../templates/components/carousel-arrow';
-
-import computed from 'ember-computed';
-import get from 'ember-metal/get';
 
 const carouselArrowClassMap = {
   left: 'carousel-left-arrow',
@@ -15,8 +13,8 @@ const carouselSlideActionMap = {
 };
 
 export default Component.extend({
-  classNamesBindings: ['carousel-arrow-class'],
-  layout: layout,
+  classNameBindings: ['carousel-arrow-class'],
+  layout,
 
   'carousel-arrow-class': computed('direction', function() {
     return carouselArrowClassMap[get(this, 'direction')];
