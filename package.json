@@ -1,6 +1,6 @@
 {
   "name": "ember-carousel",
-  "version": "0.0.6",
+  "version": "0.1.0",
   "description": "An Ember Carousel component",
   "keywords": [
     "ember-addon",
