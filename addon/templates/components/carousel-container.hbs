@@ -3,6 +3,12 @@
     item=(component 'carousel-item'
       register=(action 'registerItem')
       allItems=carouselItems)
+    left-trigger=(component 'carousel-arrow'
+      direction='left'
+      click=(action 'slideLeft'))
+    right-trigger=(component 'carousel-arrow'
+      direction='right'
+      click=(action 'slideRight'))
   )
   (hash
     previous=(action 'slideLeft')
