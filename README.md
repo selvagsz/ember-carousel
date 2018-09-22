@@ -56,6 +56,7 @@ These parameters `ui` and `act` can be called anything, but they contain the fol
 
 - `ui` - is a hash with the following component items:
   * `item` - A component that should contain your slide contents, used like so `{{ui.item}}you content{{/ui.item}}`.
+  * `[left|right]-trigger` - Two components (`left-trigger` & `right-trigger`) that are pre-wired with the slide action and class name.
 - `controls` - is a hash with the following action items:
   * `previous` - A closure action that changes to the previous slide.
   * `next` - A closure action that changes to the next slide.
